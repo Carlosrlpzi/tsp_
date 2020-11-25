@@ -34,6 +34,9 @@ class TSP:
         coordinates = np.random.randint(low=0, high=max_distance, size=(num_places,2))
         return TSP(coordinates)
 
+    def missing(self, places):
+        return set(places) -  set(self._path)
+
 @dataclass(eq=True,frozen=True)
 class Place:
     """A place to be visited"""
@@ -67,11 +70,11 @@ class Tour:
         if len(self._path) > 1:
             self._path.append(self._path[0])
 
-    def missing(self, places):
-        return set(places) -  set(self._path)
-
     def append(self, place):
         self._path.append(place)
+
+    def visited_places(self):
+        return self._path
 
     def __len__(self):
         return len(self._path)

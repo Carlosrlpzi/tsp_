@@ -17,4 +17,12 @@ def test_tsp_creation(tsp_obj):
         Place(4, 2, 3) == tsp_obj.places[4]
 
 def test_missing_places(tsp_obj):
-    pass
+    t1 = Tour()
+    t2 = Tour()
+    t1.append(places['A'])
+    t1.append(places['B'])
+    t1.append(places['C'])
+
+    t2.append(places['D'])
+
+    assert t1.missing(places.values()) == set(t2._path)
