@@ -86,6 +86,9 @@ class Ant:
     def travel(self):
         while not self.tour_finished:
             self.move()
+    def __str__(self):
+        return f"{self.__class__} [current: {self.current},\
+         Tour: {self.current}, colony: {self.colony}]
 
 
 class AntColony(Algorithm):
@@ -101,6 +104,9 @@ class AntColony(Algorithm):
         self.best = None
         self.steps = 0
         self.max_steps = hyperparams.get('max_steps', 100)
+
+
+
 
     def init(self):
         self.ants = [Ant(self, place) for place in self.tsp.places]
@@ -151,4 +157,5 @@ class AntColony(Algorithm):
             self.step()
 
     def __str__(self):
-        return f"{self.__class__} [alpha: {self.alpha}, beta: {self.beta}, rho: {self.rho}, Q: {self.Q}, max_steps: {self.max_steps}]"
+        return f"{self.__class__} [alpha: {self.alpha}, beta: {self.beta},\
+         rho: {self.rho}, Q: {self.Q}, max_steps: {self.max_steps}]"
