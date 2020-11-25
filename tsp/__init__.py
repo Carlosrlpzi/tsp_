@@ -24,17 +24,15 @@ class TSP:
 
         return total_cost
 
-    @staticmethod
-    def from_file(fileobj):
-        coordinates = np.loadtxt(fileobj)
-        return TSP(coordinates)
 
-    @staticmethod
-    def from_random(num_places=50, max_distance=100):
-        coordinates = np.random.randint(low=0, high=max_distance, size=(num_places,2))
-        return TSP(coordinates)
+    def from_files(coordinates_file, distances_file):
+        coordinates = np.loadtxt(coordinates_file)
+        distances = np.loadtxt(distances_file)
+
+        return (coordinates, distances)
 
     def missing(self, places):
+
         return set(places) -  set(self._path)
 
 @dataclass(eq=True,frozen=True)
